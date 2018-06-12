@@ -35,18 +35,21 @@ class ProblemSolver():
     def my_little_guess_game(self):
         
         guess = "start"
+        countGuesses = 0
         random_number = random.randint(1,10)
         while guess != exit :
             guess = input("Guess wich number i'm hiding or exit to quit: ")
+            countGuesses += 1
+            #import pdb; pdb.set_trace()
             if guess == random_number:
                 print("Congrats, your got it right. Let's try a new one.")
                 random_number = random.randint(1,10)
             elif guess < random_number:
                 print("OPS, a little bit higher.")
+            elif guess == exit:
+                print("BYE BYE")
             elif guess > random_number:
                 print("OPS, a little bit lower")
-            elif guess == "exit":
-                print("BYE BYE")
             else:
                 print("Dont ruin my little game")
 
