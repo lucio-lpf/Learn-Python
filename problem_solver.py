@@ -32,11 +32,27 @@ class ProblemSolver():
         common_list = list(set(list_one) & set(list_two))     
         return common_list
 
-   # def my_little_guess_game(self):
+    def my_little_guess_game(self):
+        
+        guess = "start"
+        random_number = random.randint(1,10)
+        while guess != exit :
+            guess = input("Guess wich number i'm hiding or exit to quit: ")
+            if guess == random_number:
+                print("Congrats, your got it right. Let's try a new one.")
+                random_number = random.randint(1,10)
+            elif guess < random_number:
+                print("OPS, a little bit higher.")
+            elif guess > random_number:
+                print("OPS, a little bit lower")
+            elif guess == "exit":
+                print("BYE BYE")
+            else:
+                print("Dont ruin my little game")
 
 solve_my_problems = ProblemSolver()
 #solve_my_problems.question_one_and_two() 
 #print(solve_my_problems.print(less_than_five_from_list([20,30,4,2,10,1,2,9,0,-2,3],10))
-print(solve_my_problems.common_in_two_lists())
-
+#print(solve_my_problems.common_in_two_lists())
+solve_my_problems.my_little_guess_game()
 
