@@ -32,27 +32,38 @@ class ProblemSolver():
         common_list = list(set(list_one) & set(list_two))     
         return common_list
 
+    def is_number(self, test_param):
+        try:
+            int(test_param)
+        except ValueError:
+            return False;
+        else:
+            return True
+
     def my_little_guess_game(self):
         
         guess = "start"
-        countGuesses = 0
+        count_guesses = 0
         random_number = random.randint(1,10)
-        while guess != exit :
-            guess = input("Guess wich number i'm hiding or exit to quit: ")
-            countGuesses += 1
-            #import pdb; pdb.set_trace()
-            if guess == random_number:
-                print("Congrats, your got it right. Let's try a new one.")
-                random_number = random.randint(1,10)
-            elif guess < random_number:
-                print("OPS, a little bit higher.")
-            elif guess == exit:
-                print("BYE BYE")
-            elif guess > random_number:
-                print("OPS, a little bit lower")
+        while guess != "bye" :
+            guess = raw_input("Guess wich number i'm hiding (1-10) or bye to quit: ")
+            count_guesses += 1
+            if self.is_number(guess):
+                if guess == random_number:
+                    print("Congrats, your got it right. Let's try a new one.")
+                    print("You took " +  str(count_guesses) + " to got it right")
+                    count_guesses = 0
+                    random_number = random.randint(1,10)
+                elif guess < random_number:
+                    print("OPS, a little bit higher.")
+                else:
+                    print("OPS, a little bit lower")
+            elif guess == "bye":
+                 print("BYE BYE")
+                 break
             else:
-                print("Dont ruin my little game")
-
+                print("Dont ruin my game")
+   
 solve_my_problems = ProblemSolver()
 #solve_my_problems.question_one_and_two() 
 #print(solve_my_problems.print(less_than_five_from_list([20,30,4,2,10,1,2,9,0,-2,3],10))
