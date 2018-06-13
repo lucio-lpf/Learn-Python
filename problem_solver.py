@@ -2,15 +2,24 @@ from person import Person
 import random
 
 class ProblemSolver():   
-    
-    def question_one_and_two(self):
-        name = raw_input("Your name: ")
-        age = input("Yout age: ") 
-        number_of_copies = input("Gimme a number: ")
-        tom = Person(name,age)
+
+
+    def year_one_hundred(self,name,age,number_of_copies):
+        tom = Person(name,int(age))
         for i in range(number_of_copies):
-            print( tom.getAge())
-            print( tom.yearsToOneHundred())
+            print(tom.name + ", you will become 100 yo in: " + str(tom.year_of_one_hundred()))
+
+    def check_even_or_odd_number(self,number,division_number):
+
+        if  number % 4 == 0:
+            print("This number can be divided by 4")
+        elif number % 2 == 0:
+            print("You informed a even number")
+        else:
+            print( "You informed a odd number")
+
+        if number % division_number == 0:
+            print ("The number you informed can be divided by the division number you also informed")
 
     def print_less_than_five_from_list(self, my_list,last_than):
         new_list = []
@@ -19,20 +28,20 @@ class ProblemSolver():
                 new_list.append(element)
         return new_list
 
-    def random_list_gen(self):
+    def _creat_random_list(self):
         new_list = []
         for i in range(0, random.randint(1,10)):
             new_list.append(random.randint(1,100))
         print(new_list)
         return new_list
 
-    def common_in_two_lists(self):
-        list_one = self.random_list_gen()
-        list_two = self.random_list_gen()
+    def print_common_in_two_lists(self):
+        list_one = self.creat_random_list()
+        list_two = self.creat_random_list()
         common_list = list(set(list_one) & set(list_two))     
-        return common_list
+        print common_list
 
-    def is_number(self, test_param):
+    def _is_number(self, test_param):
         try:
             int(test_param)
         except ValueError:
@@ -40,7 +49,7 @@ class ProblemSolver():
         else:
             return True
 
-    def my_little_guess_game(self):
+    def guess_game(self):
         
         guess = "start"
         count_guesses = 0
@@ -49,12 +58,12 @@ class ProblemSolver():
             guess = raw_input("Guess wich number i'm hiding (1-10) or bye to quit: ")
             count_guesses += 1
             if self.is_number(guess):
-                if guess == random_number:
+                if int(guess) == random_number:
                     print("Congrats, your got it right. Let's try a new one.")
                     print("You took " +  str(count_guesses) + " to got it right")
                     count_guesses = 0
                     random_number = random.randint(1,10)
-                elif guess < random_number:
+                elif int(guess) < random_number:
                     print("OPS, a little bit higher.")
                 else:
                     print("OPS, a little bit lower")
@@ -64,9 +73,4 @@ class ProblemSolver():
             else:
                 print("Dont ruin my game")
    
-solve_my_problems = ProblemSolver()
-#solve_my_problems.question_one_and_two() 
-#print(solve_my_problems.print(less_than_five_from_list([20,30,4,2,10,1,2,9,0,-2,3],10))
-#print(solve_my_problems.common_in_two_lists())
-solve_my_problems.my_little_guess_game()
 
