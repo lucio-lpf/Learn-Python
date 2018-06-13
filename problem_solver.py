@@ -21,17 +21,17 @@ class ProblemSolver():
         if number % division_number == 0:
             print ("The number you informed can be divided by the division number you also informed")
 
-    def print_less_than_five_from_list(self, my_list,last_than):
+    def print_less_than_number_in_list(self, my_list,last_than):
         new_list = []
         for element in my_list:
             if element < last_than:
                 new_list.append(element)
-        return new_list
+        print new_list
 
-    def _creat_random_list(self):
+    def creat_random_list(self):
         new_list = []
         for i in range(0, random.randint(1,10)):
-            new_list.append(random.randint(1,100))
+            new_list.append(random.randint(1,20))
         print(new_list)
         return new_list
 
@@ -41,7 +41,7 @@ class ProblemSolver():
         common_list = list(set(list_one) & set(list_two))     
         print common_list
 
-    def _is_number(self, test_param):
+    def is_number(self, test_param):
         try:
             int(test_param)
         except ValueError:
@@ -49,13 +49,8 @@ class ProblemSolver():
         else:
             return True
 
-    def guess_game(self):
+    def guess_game(self,guess,random_number,count_guesses):
         
-        guess = "start"
-        count_guesses = 0
-        random_number = random.randint(1,10)
-        while guess != "bye" :
-            guess = raw_input("Guess wich number i'm hiding (1-10) or bye to quit: ")
             count_guesses += 1
             if self.is_number(guess):
                 if int(guess) == random_number:
@@ -69,8 +64,7 @@ class ProblemSolver():
                     print("OPS, a little bit lower")
             elif guess == "bye":
                  print("BYE BYE")
-                 break
             else:
                 print("Dont ruin my game")
-   
+            return (count_guesses, random_number)
 
